@@ -39,7 +39,7 @@ module AoC
   extend T::Sig
 
   sig {params(num: Integer, clear_screen: T::Boolean).void}
-  def self.part(num, clear_screen: false)
+  def self.part(num, clear_screen: num == 1)
     self.clear_screen if clear_screen
     puts "Part #{num}:".green
     puts "  #{'Solution'.green}: #{Assert.to_s(yield)}"
@@ -163,7 +163,7 @@ module Assert
     value
   end
 
-  def self.call(target, expect, *args)
+  def self.equal_call(expect, target, *args)
     T.unsafe(self).log_call(target, *args) {|m, r, desc| Assert.equal(expect, r, "#{m}(#{desc})")}
   end
 
