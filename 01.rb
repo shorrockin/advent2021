@@ -2,12 +2,10 @@
 # frozen_string_literal: true
 require './utils/boilerplate.rb'
 
-module AoC
-  part 1 do
-    Assert.equal 1, 1, "basic numbers"
-  end
+AoC.part 1 do
+  AoC::IO.input_file.map(&:to_i).each_cons(2).count {|a, b| a < b}
+end
 
-  part 2 do
-    "Solution"
-  end
+AoC.part 2 do
+  AoC::IO.input_file.map(&:to_i).each_cons(4).count {|a, b, c, d| (a + b + c) < (b + c + d)}
 end

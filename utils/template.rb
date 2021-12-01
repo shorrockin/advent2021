@@ -1,6 +1,6 @@
 # typed: false
 # frozen_string_literal: true
-require './boilerplate.rb'
+require './utils/boilerplate.rb'
 
 module AoC
   part 1 do
