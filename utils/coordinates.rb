@@ -20,7 +20,7 @@ module Flat
   end
 
   Coordinate = Struct.new(:x, :y) do
-    def move(direction, times = 1); Coordinate.new(x + (direction.x * times), y + (direction.y * times)); end
+    def move(direction, times=1); Coordinate.new(x + (direction.x * times), y + (direction.y * times)); end
     def distance(other); (other.x - x).abs + (other.y - y).abs; end
     def to_s; "Coordinate<x:#{x},y:#{y}>"; end
   end
