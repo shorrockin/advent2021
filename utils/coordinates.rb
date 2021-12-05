@@ -91,8 +91,10 @@ module Flat
       end
     end
 
-    def get(coordinate, property)
-      at(coordinate)[property]
+    def get(coordinate, property, default=nil)
+      data = at(coordinate)
+      return default if data.nil?
+      at(coordinate)[property] || default
     end
 
     def after_from_lines; end;
