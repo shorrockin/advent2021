@@ -1,6 +1,7 @@
 # typed: false
 # frozen_string_literal: true
 require './utils/boilerplate.rb'
+require './utils/intcode.rb'
 
 TEST_INPUT = "16,1,2,0,4,2,7,1,2,14".split(',').map(&:to_i)
 ACTUAL_INPUT = AoC::IO.input_file_line.split(',').map(&:to_i)
