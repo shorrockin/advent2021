@@ -136,6 +136,7 @@ module Flat
     end
 
     def self.from_lines(lines, grid: Grid.new, &blk)
+      lines = lines.split("\n") if lines.is_a?(String)
       lines.each_with_index do |line, y|
         line.chars.each_with_index do |char, x|
           data = yield char, x, y
