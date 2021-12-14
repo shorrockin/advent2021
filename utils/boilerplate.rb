@@ -158,7 +158,7 @@ module Assert
 
   sig {params(expect: T.untyped, value: T.untyped, description: String).returns(T.untyped)}
   def self.equal(expect, value, description="")
-    puts "  #{'✔'.green} #{description} == #{Assert.to_s(value)}" if value == expect
+    puts "  #{'✔'.green} #{description} == #{Assert.to_s(value)}" if value === expect
     puts "  #{'✖'.red} #{description}: expected #{Assert.to_s(expect)}, received #{Assert.to_s(value)}" if value != expect
     value
   end

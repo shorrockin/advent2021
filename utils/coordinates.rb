@@ -49,6 +49,15 @@ module Flat
       self
     end
 
+    def remove_coordinate(coordinate)
+      # puts "remove"
+      @points.delete(coordinate)
+      @width = points.map {|point| point.first.x}.max + 1
+      @height = points.map {|point| point.first.y}.max + 1
+      @start_x = points.map {|point| point.first.x}.min
+      @start_y = points.map {|point| point.first.y}.min
+    end
+
     def contains?(coordinate)
       !@points[coordinate].nil?
     end
@@ -88,6 +97,8 @@ module Flat
       if (attributes = at(coordinate))
         attributes[property] = value
         attributes
+      else
+        add_coordinate(coordinate, property => value)
       end
     end
 
@@ -151,7 +162,7 @@ end
 
 module ThreeD
   Coordinate = Struct.new(:x, :y, :z) do
-    def move(direction, times = 1); Coordinate.new(x + (direction.x * times), y + (direction.y * times), z); end
+    def move(direction, times=1); Coordinate.new(x + (direction.x * times), y + (direction.y * times), z); end
     def to_s; "Coordinate<x:#{x},y:#{y},#{z}"; end
   end
 
