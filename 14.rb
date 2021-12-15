@@ -13,29 +13,25 @@ def process(instructions, steps)
   end
 
   steps.times do
-    new_counts = Hash.new(0)
+    changes = Hash.new(0)
 
-    # figure out the changes
     instructions.rules.each do |rule, result|
       current_counts = current[rule]
       next if current_counts == 0
-      new_counts[result] += current_counts
-      new_counts[result + rule[-1]] += current_counts
-      new_counts[rule[0] + result] += current_counts
-      new_counts[rule] -= current_counts
+      changes[result] += current_counts
+      changes[result + rule[-1]] += current_counts
+      changes[rule[0] + result] += current_counts
+      changes[rule] -= current_counts
     end
 
-    # apply them
-    new_counts.each do |key, value|
-      current[key] += value
-    end
+    changes.each {|key, value| current[key] += value}
   end
   current
 end
 
 def calculate_solution(processed)
   counts = processed
-    .select {|k, v| k.length == 1}
+    .select {|k, _| k.length == 1}
     .sort_by(&:last)
   counts.last.last - counts.first.last
 end
